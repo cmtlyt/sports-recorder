@@ -1,0 +1,265 @@
+.homeContainer {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 5rem 0 10rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.homeContent {
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  max-width: 120rem;
+  padding: 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.homeContent.mounted {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Logo 区域样式 */
+.logoSection {
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s;
+}
+
+.logoSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logoWrapper {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  margin: 0 auto 1.5rem;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0rem);
+  }
+  50% {
+    transform: translateY(-1.5rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.subtitle {
+  max-width: 60rem;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--color-tertiary);
+}
+
+/* 功能卡片区域样式 */
+.featuresSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s;
+}
+
+.featuresSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.featureCard {
+  box-sizing: border-box;
+  width: 25rem;
+  padding: 2rem;
+  background: var(--white);
+  border: 0.1rem solid var(--border-primary);
+  border-radius: 1.6rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.12);
+  transform: translateY(-1rem);
+}
+
+.featureIcon {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.featureCard h3 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.featureCard p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--color-tertiary);
+}
+
+/* CTA 区域样式 */
+.ctaSection {
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.6s;
+}
+
+.ctaSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+  border: none;
+  border-radius: 5rem;
+  box-shadow: 0 1rem 2.5rem rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  box-shadow: 0 1.5rem 3.5rem rgba(59, 130, 246, 0.4);
+  transform: translateY(-0.3rem);
+}
+
+.ctaSubtext {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-quaternary);
+}
+
+/* 装饰性元素 */
+.decorativeElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.circle {
+  position: absolute;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.circle1 {
+  top: -15rem;
+  right: -15rem;
+  width: 30rem;
+  height: 30rem;
+  animation: float 12s ease-in-out infinite;
+}
+
+.circle2 {
+  bottom: -10rem;
+  left: 10%;
+  width: 20rem;
+  height: 20rem;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+.circle3 {
+  top: 20%;
+  left: -7.5rem;
+  width: 15rem;
+  height: 15rem;
+  animation: float 10s ease-in-out infinite;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .featuresSection {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .featureCard {
+    width: 100%;
+    max-width: 35rem;
+  }
+
+  .logoWrapper {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .homeContent {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .logoWrapper {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .ctaButton {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
