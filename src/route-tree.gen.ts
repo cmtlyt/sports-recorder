@@ -9,12 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root';
-import { Route as RecorderRouteImport } from './routes/recorder';
+import { Route as LayoutRouteImport } from './routes/_layout';
 import { Route as IndexRouteImport } from './routes/index';
+import { Route as ApiExerciseTypesRouteImport } from './routes/api/exercise-types';
+import { Route as LayoutRecorderRouteImport } from './routes/_layout/recorder';
 
-const RecorderRoute = RecorderRouteImport.update({
-  id: '/recorder',
-  path: '/recorder',
+const LayoutRoute = LayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any);
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +23,55 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any);
+const ApiExerciseTypesRoute = ApiExerciseTypesRouteImport.update({
+  id: '/api/exercise-types',
+  path: '/api/exercise-types',
+  getParentRoute: () => rootRouteImport,
+} as any);
+const LayoutRecorderRoute = LayoutRecorderRouteImport.update({
+  id: '/recorder',
+  path: '/recorder',
+  getParentRoute: () => LayoutRoute,
+} as any);
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
-  '/recorder': typeof RecorderRoute;
+  '/recorder': typeof LayoutRecorderRoute;
+  '/api/exercise-types': typeof ApiExerciseTypesRoute;
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
-  '/recorder': typeof RecorderRoute;
+  '/recorder': typeof LayoutRecorderRoute;
+  '/api/exercise-types': typeof ApiExerciseTypesRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
   '/': typeof IndexRoute;
-  '/recorder': typeof RecorderRoute;
+  '/_layout': typeof LayoutRouteWithChildren;
+  '/_layout/recorder': typeof LayoutRecorderRoute;
+  '/api/exercise-types': typeof ApiExerciseTypesRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/recorder';
+  fullPaths: '/' | '/recorder' | '/api/exercise-types';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/recorder';
-  id: '__root__' | '/' | '/recorder';
+  to: '/' | '/recorder' | '/api/exercise-types';
+  id: '__root__' | '/' | '/_layout' | '/_layout/recorder' | '/api/exercise-types';
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
-  RecorderRoute: typeof RecorderRoute;
+  LayoutRoute: typeof LayoutRouteWithChildren;
+  ApiExerciseTypesRoute: typeof ApiExerciseTypesRoute;
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/recorder': {
-      id: '/recorder';
-      path: '/recorder';
-      fullPath: '/recorder';
-      preLoaderRoute: typeof RecorderRouteImport;
+    '/_layout': {
+      id: '/_layout';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof LayoutRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     '/': {
@@ -65,12 +81,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport;
       parentRoute: typeof rootRouteImport;
     };
+    '/api/exercise-types': {
+      id: '/api/exercise-types';
+      path: '/api/exercise-types';
+      fullPath: '/api/exercise-types';
+      preLoaderRoute: typeof ApiExerciseTypesRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/_layout/recorder': {
+      id: '/_layout/recorder';
+      path: '/recorder';
+      fullPath: '/recorder';
+      preLoaderRoute: typeof LayoutRecorderRouteImport;
+      parentRoute: typeof LayoutRoute;
+    };
   }
 }
 
+interface LayoutRouteChildren {
+  LayoutRecorderRoute: typeof LayoutRecorderRoute;
+}
+
+const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutRecorderRoute: LayoutRecorderRoute,
+};
+
+const LayoutRouteWithChildren = LayoutRoute._addFileChildren(LayoutRouteChildren);
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  RecorderRoute: RecorderRoute,
+  LayoutRoute: LayoutRouteWithChildren,
+  ApiExerciseTypesRoute: ApiExerciseTypesRoute,
 };
 export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
 

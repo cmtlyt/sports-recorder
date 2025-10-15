@@ -1,0 +1,208 @@
+.historyPage {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 0.4rem var(--shadow-primary);
+}
+
+.historyHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.recordingTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.clearButton {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  background: var(--primary-red);
+  border: none;
+  border-radius: 0.6rem;
+  transition: background 0.2s ease;
+}
+
+.clearButton:hover {
+  background: var(--dark-red);
+}
+
+.emptyState {
+  padding: 3.2rem 0;
+  font-size: 1rem;
+  color: var(--color-quaternary);
+  text-align: center;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.historyItem {
+  padding: 1.2rem;
+  background: var(--bg-secondary);
+  border: 0.1rem solid var(--border-primary);
+  border-radius: 1rem;
+}
+
+.historyItemHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.historyName {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.historyTime {
+  font-size: 0.8125rem;
+  color: var(--color-quaternary);
+}
+
+.historyDuration {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.historySegments {
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.8125rem;
+  color: var(--color-tertiary);
+  border-top: 0.1rem solid var(--border-primary);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .historyPage {
+    padding: 1.6rem;
+    border-radius: 1rem;
+  }
+
+  .historyHeader {
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .recordingTitle {
+    font-size: 1.125rem;
+  }
+
+  .clearButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    border-radius: 0.5rem;
+  }
+
+  .emptyState {
+    padding: 2.8rem 0;
+    font-size: 0.9375rem;
+  }
+
+  .historyList {
+    gap: 1rem;
+  }
+
+  .historyItem {
+    padding: 1rem;
+    border-radius: 0.8rem;
+  }
+
+  .historyItemHeader {
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .historyName {
+    font-size: 0.9375rem;
+  }
+
+  .historyTime {
+    font-size: 0.75rem;
+  }
+
+  .historyDuration {
+    font-size: 0.8125rem;
+  }
+
+  .historySegments {
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .historyPage {
+    padding: 1.2rem;
+    border-radius: 0.8rem;
+  }
+
+  .historyHeader {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recordingTitle {
+    font-size: 1rem;
+  }
+
+  .clearButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 0.4rem;
+  }
+
+  .emptyState {
+    padding: 2.4rem 0;
+    font-size: 0.875rem;
+  }
+
+  .historyList {
+    gap: 0.8rem;
+  }
+
+  .historyItem {
+    padding: 0.8rem;
+    border-radius: 0.6rem;
+  }
+
+  .historyItemHeader {
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .historyName {
+    font-size: 0.875rem;
+  }
+
+  .historyTime {
+    font-size: 0.6875rem;
+  }
+
+  .historyDuration {
+    font-size: 0.75rem;
+  }
+
+  .historySegments {
+    padding-top: 0.4rem;
+    margin-top: 0.4rem;
+    font-size: 0.6875rem;
+  }
+}

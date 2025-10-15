@@ -1,3 +1,33 @@
 body {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --color-primary: #111827;
+  --color-secondary: #0f172a;
+  --color-tertiary: #475569;
+  --color-quaternary: #64748b;
+  --color-quinary: #334155;
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  --shadow-primary: rgba(0, 0, 0, 0.1);
+  --shadow-secondary: rgba(0, 0, 0, 0.05);
+  --white: white;
+  --black: black;
+
+  /* 主题色 */
+  --primary-blue: #3b82f6;
+  --primary-green: #10b981;
+  --primary-red: #ef4444;
+  --primary-yellow: #f59e0b;
+  --primary-purple: #8b5cf6;
+
+  /* 深色主题色 */
+  --dark-blue: #1d4ed8;
+  --dark-green: #047857;
+  --dark-red: #dc2626;
+  --dark-yellow: #d97706;
+  --dark-purple: #6d28d9;
   margin: 0;
+  /* 设置rem基准值为10px */
+  font-size: 62.5%;
 }

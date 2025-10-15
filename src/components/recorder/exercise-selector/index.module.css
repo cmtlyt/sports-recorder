@@ -1,0 +1,258 @@
+.exerciseSelection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.startButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.startButton {
+  padding: 1.2rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  background: var(--primary-blue);
+  border: none;
+  border-radius: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.startButton:hover {
+  background: var(--dark-blue);
+  box-shadow: 0 0.2rem 0.4rem var(--shadow-primary);
+  transform: translateY(-0.1rem);
+}
+
+.exerciseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .exerciseGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exerciseGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .startButton {
+    padding: 1rem 1.6rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+  }
+}
+
+.exerciseButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem 0.8rem;
+  cursor: pointer;
+  background: var(--white);
+  border: 0.2rem solid var(--border-primary);
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+}
+
+.exerciseButton:hover {
+  background: var(--bg-secondary);
+  border-color: var(--primary-blue);
+  box-shadow: 0 0.2rem 0.4rem var(--shadow-primary);
+  transform: translateY(-0.1rem);
+}
+
+.exerciseButton.selected {
+  color: var(--white);
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.exerciseButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .exerciseButton {
+    padding: 1.4rem 0.6rem;
+    border-radius: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exerciseButton {
+    padding: 1.2rem 0.4rem;
+    border-radius: 0.6rem;
+  }
+}
+
+.exerciseIcon {
+  margin-bottom: 0.6rem;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .exerciseIcon {
+    margin-bottom: 0.4rem;
+    font-size: 1.25rem;
+  }
+}
+
+.exerciseLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .exerciseLabel {
+    font-size: 0.8125rem;
+  }
+}
+
+.segmentControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: 1.6rem 0;
+}
+
+@media (max-width: 480px) {
+  .segmentControls {
+    gap: 0.6rem;
+    margin: 1.2rem 0;
+  }
+}
+
+.segmentButton {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.6rem;
+  transition: all 0.2s ease;
+}
+
+.segmentButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .segmentButton {
+    padding: 0.6rem 1rem;
+    font-size: 0.8125rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.segmentButton.green {
+  color: var(--white);
+  background: var(--primary-green);
+}
+
+.segmentButton.green:hover:not(:disabled) {
+  background: var(--dark-green);
+}
+
+.segmentButton.yellow {
+  color: var(--white);
+  background: var(--primary-yellow);
+}
+
+.segmentButton.yellow:hover:not(:disabled) {
+  background: var(--dark-yellow);
+}
+
+.segmentButton.gray {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.segmentButton.gray:hover:not(:disabled) {
+  background: var(--border-primary);
+}
+
+.exerciseTypeSelector {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.6rem;
+  background: var(--bg-secondary);
+  border-radius: 0.8rem;
+}
+
+/* 添加滚动区域容器 */
+.exerciseTypeContainer {
+  max-height: 34rem;
+  padding-right: 0.4rem;
+  overflow-y: auto;
+}
+
+/* 自定义滚动条样式 */
+.exerciseTypeContainer::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+.exerciseTypeContainer::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-radius: 0.3rem;
+}
+
+.exerciseTypeContainer::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 0.3rem;
+}
+
+.exerciseTypeContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+.selectorTitle {
+  margin-bottom: 1.2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.selectorActions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-top: 1.6rem;
+}
+
+@media (max-width: 480px) {
+  .exerciseTypeSelector {
+    padding: 1.2rem;
+  }
+
+  .exerciseTypeContainer {
+    max-height: 18rem;
+  }
+
+  .selectorTitle {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .selectorActions {
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+}

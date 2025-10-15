@@ -1,0 +1,159 @@
+.statsPage {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recordingTitle {
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+}
+
+.statCard {
+  padding: 16px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.statCard.blue {
+  color: white;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.statCard.green {
+  color: white;
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+
+.statCard.purple {
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.statCard.orange {
+  color: white;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.statValue {
+  margin-bottom: 6px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.lastExercise {
+  padding: 16px;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.lastExerciseText {
+  font-size: 1rem;
+  color: #475569;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .statsPage {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .recordingTitle {
+    margin-bottom: 12px;
+    font-size: 1.125rem;
+  }
+
+  .statsGrid {
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .statCard {
+    padding: 14px;
+    border-radius: 8px;
+  }
+
+  .statValue {
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+  }
+
+  .statLabel {
+    font-size: 0.8125rem;
+  }
+
+  .lastExercise {
+    padding: 14px;
+    border-radius: 8px;
+  }
+
+  .lastExerciseText {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsPage {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .recordingTitle {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  .statsGrid {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .statCard {
+    padding: 12px;
+    border-radius: 6px;
+  }
+
+  .statValue {
+    margin-bottom: 4px;
+    font-size: 1.125rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
+  }
+
+  .lastExercise {
+    padding: 12px;
+    border-radius: 6px;
+  }
+
+  .lastExerciseText {
+    font-size: 0.875rem;
+  }
+}

@@ -219,6 +219,7 @@
         "noGlobalEval": { "level": "error" }
       },
       "style": {
+        "noNonNullAssertion": { "level": "off" },
         "noDescendingSpecificity": { "level": "error" },
         "noValueAtRule": { "level": "error" },
         "noCommonJs": { "level": "error" },
