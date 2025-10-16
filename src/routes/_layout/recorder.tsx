@@ -47,6 +47,7 @@ function RouteComponent() {
     exerciseStats,
 
     // 操作函数
+    getExerciseType,
     startExercise,
     stopExercise,
     addExerciseSegment,
@@ -68,6 +69,7 @@ function RouteComponent() {
             <RecordingView
               currentExercise={currentExercise!}
               exerciseTypes={exerciseTypes}
+              getExerciseType={getExerciseType}
               onAddSegment={addExerciseSegment}
               onStopExercise={stopExercise}
             />

@@ -13,6 +13,6 @@ export function calculateExerciseStats(history: ExerciseRecord[]): ExerciseStats
     totalCount: history.reduce((sum, ex) => sum + (ex.count || 0), 0),
     averageDuration:
       history.length > 0 ? Math.round(history.reduce((sum, ex) => sum + (ex.duration || 0), 0) / history.length) : 0,
-    lastExercise: history.length > 0 ? new Date(history[0].startTime).toLocaleDateString('zh-CN') : undefined,
+    lastExercise: history.length > 0 ? new Date(history[0].startTime).toLocaleString('zh-CN') : undefined,
   };
 }

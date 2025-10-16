@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import type { ExerciseRecord, ExerciseSegment, ExerciseType, ExerciseTypeOption } from '@/types/recorder';
 import type { UseRefStateCtrl } from '../use-ref-state';
 import { calculateExerciseStats } from './stats-utils';
@@ -36,6 +37,19 @@ function finishCurrentSegmentAndAddNew(segments: ExerciseSegment[], newSegment: 
  * 运动记录逻辑hook
  */
 export function useExerciseLogic(exerciseTypes: ExerciseTypeOption[], stateCtrl: UseRefStateCtrl<RecorderState>) {
+  const exerciseMapRef = useRef(
+    exerciseTypes.reduce(
+      (map, type) => {
+        map[type.value] = type;
+        return map;
+      },
+      {} as Record<ExerciseTypeOption['value'], ExerciseTypeOption>,
+    ),
+  );
+
+  const getExerciseType = (value: ExerciseTypeOption['value'] | undefined) =>
+    value ? exerciseMapRef.current[value] : null;
+
   /** 开始运动记录 */
   const startExercise = (type: ExerciseType) => {
     const state = stateCtrl.getState();
@@ -176,6 +190,7 @@ export function useExerciseLogic(exerciseTypes: ExerciseTypeOption[], stateCtrl:
   };
 
   return {
+    getExerciseType,
     startExercise,
     stopExercise,
     addExerciseSegment,

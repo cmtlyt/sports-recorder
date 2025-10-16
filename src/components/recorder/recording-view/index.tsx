@@ -8,9 +8,10 @@ import styles from './index.module.css';
 
 interface RecordingViewProps {
   currentExercise: ExerciseRecord;
+  exerciseTypes: ExerciseTypeOption[];
+  getExerciseType: (type: ExerciseTypeOption['value'] | undefined) => ExerciseTypeOption | null;
   onStopExercise: () => void;
   onAddSegment: (type: 'exercise' | 'rest', exerciseType?: ExerciseType) => void;
-  exerciseTypes: ExerciseTypeOption[];
 }
 
 export function Timer({ startTime }: { startTime: number }) {
@@ -29,7 +30,13 @@ export function Timer({ startTime }: { startTime: number }) {
   return <span className={styles.timer}>{formatDuration(Math.floor((Date.now() - startTime) / 1000))}</span>;
 }
 
-export function RecordingView({ currentExercise, onStopExercise, onAddSegment, exerciseTypes }: RecordingViewProps) {
+export function RecordingView({
+  currentExercise,
+  exerciseTypes,
+  getExerciseType,
+  onStopExercise,
+  onAddSegment,
+}: RecordingViewProps) {
   // 更新分段持续时间
   const segmentsWithUpdatedDuration =
     currentExercise.segments?.map((segment) => {
@@ -37,15 +44,14 @@ export function RecordingView({ currentExercise, onStopExercise, onAddSegment, e
     }) || [];
 
   // 获取当前最后一个分段的类型
-  const currentSegmentType =
-    currentExercise.segments && currentExercise.segments.length > 0
-      ? currentExercise.segments[currentExercise.segments.length - 1].type
-      : undefined;
+  const lastSegment = (currentExercise.segments || []).at(-1);
 
   return (
     <div className={styles.recordingCard}>
       <div className={styles.recordingHeader}>
-        <h2 className={styles.recordingTitle}>{currentExercise.name} - 记录中</h2>
+        <h2 className={styles.recordingTitle}>
+          {(getExerciseType((lastSegment || {}).exerciseType) || {}).label || '运动'} - 记录中
+        </h2>
         <div className={styles.timerContainer}>
           <Clock className={styles.timerIcon} />
           <Timer startTime={currentExercise.startTime.getTime()} />
@@ -55,7 +61,7 @@ export function RecordingView({ currentExercise, onStopExercise, onAddSegment, e
       {/* 分段记录控制 */}
       <SegmentControls
         currentExerciseType={currentExercise.type}
-        currentSegmentType={currentSegmentType}
+        currentSegmentType={(lastSegment || {}).type}
         exerciseTypes={exerciseTypes}
         onAddSegment={onAddSegment}
       />
@@ -65,16 +71,21 @@ export function RecordingView({ currentExercise, onStopExercise, onAddSegment, e
         <div className={styles.segmentList}>
           <h3 className={styles.segmentTitle}>分段记录</h3>
           <div className={styles.segmentList}>
-            {segmentsWithUpdatedDuration.map((segment, index, arr) => (
-              <div className={styles.segmentItem} key={segment.id}>
-                <span>{segment.type === 'exercise' ? '🏃 运动' : '⏸️ 休息'}</span>
-                {index === arr.length - 1 ? (
-                  <Timer startTime={segment.startTime.getTime()} />
-                ) : (
-                  <span>{formatDuration(segment.duration)}</span>
-                )}
-              </div>
-            ))}
+            {segmentsWithUpdatedDuration.map((segment, index, arr) => {
+              const exerciseType = getExerciseType(segment.exerciseType);
+              const exerciseLabel = exerciseType ? `${exerciseType.icon} ${exerciseType.label}` : '🏃 运动';
+
+              return (
+                <div className={styles.segmentItem} key={segment.id}>
+                  <span>{segment.type === 'exercise' ? exerciseLabel : '⏸️ 休息'}</span>
+                  {index === arr.length - 1 ? (
+                    <Timer startTime={segment.startTime.getTime()} />
+                  ) : (
+                    <span>{formatDuration(segment.duration)}</span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

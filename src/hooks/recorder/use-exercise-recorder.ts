@@ -47,8 +47,14 @@ export function useExerciseRecorder({ exerciseTypes }: { exerciseTypes: Exercise
   }, []);
 
   // 使用运动记录逻辑hook
-  const { startExercise, stopExercise, addExerciseSegment, updateCurrentSegmentDuration, clearHistory } =
-    useExerciseLogic(exerciseTypes, ctrl);
+  const {
+    getExerciseType,
+    startExercise,
+    stopExercise,
+    addExerciseSegment,
+    updateCurrentSegmentDuration,
+    clearHistory,
+  } = useExerciseLogic(exerciseTypes, ctrl);
 
   return {
     // 状态
@@ -58,6 +64,7 @@ export function useExerciseRecorder({ exerciseTypes }: { exerciseTypes: Exercise
     exerciseStats: recorderState.exerciseStats,
 
     // 操作函数
+    getExerciseType,
     startExercise,
     stopExercise,
     addExerciseSegment,
